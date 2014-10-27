@@ -2,8 +2,8 @@
 
 module.exports = function(environment) {
   var ENV = {
-    modulePrefix: 'ember-cli-ember-fire',
-    firebase_instance: 'sweltering-fire-8953',
+  	modulePrefix: 'ember-cli-ember-fire',
+    firebase_instance: 'ember-cli-ember-fire',
     environment: environment,
     baseURL: '/',
     locationType: 'auto',
@@ -29,15 +29,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'test') {
-    // Testem prefers this...
-    ENV.baseURL = '/';
-    ENV.locationType = 'auto';
-
-    // keep test console output quieter
-    ENV.APP.LOG_ACTIVE_GENERATION = false;
-    ENV.APP.LOG_VIEW_LOOKUPS = false;
-
-    ENV.APP.rootElement = '#ember-testing';
+    ENV.baseURL = '/'; // Testem prefers this...
   }
 
   if (environment === 'production') {

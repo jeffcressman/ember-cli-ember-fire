@@ -1,9 +1,11 @@
 import Ember from 'ember';
+import ENV from 'ember-cli-ember-fire/config/environment';
 
 var sum = Ember.computed.sum;
 var mapBy = Ember.computed.mapBy;
 
 export default Ember.ArrayController.extend({
+	authorized: false,
   itemController: 'player',
   scores: mapBy('@this', 'score'),
   total: sum('scores'),
@@ -24,7 +26,29 @@ export default Ember.ArrayController.extend({
       model.save();
     },
     destroyUser: function(model) {
+    	var user_email = model.get('email');
+    	var user_pass = model.get('password');
+
       model.destroyRecord();
+
+      // and delete the authentication record
+      var ref = new window.Firebase(ENV.firebase);
+      ref.removeUser({
+			  email    : user_email,
+			  password : user_pass
+			}, function(error) {
+			  if (error === null) {
+			    console.log("User removed successfully");
+			  } else {
+			    console.log("Error removing user:", error);
+			  }
+			});
+    },
+    logout: function() {
+    	var ref = new window.Firebase(ENV.firebase);
+    	ref.unauth();
+    	console.log("User logged out");
+    	this.set('authorized', false);
     }
   }
 });

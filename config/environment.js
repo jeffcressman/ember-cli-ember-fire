@@ -3,7 +3,7 @@
 module.exports = function(environment) {
   var ENV = {
   	modulePrefix: 'ember-cli-ember-fire',
-    firebase_instance: 'ember-cli-ember-fire',
+    firebase: 'https://ember-cli-ember-fire.firebaseio.com',
     environment: environment,
     baseURL: '/',
     locationType: 'auto',

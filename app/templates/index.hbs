@@ -1,4 +1,9 @@
 <div class="leaderboard">
+	{{#if authorized}}
+		<button {{action 'logout'}}>Logout</button>
+	{{else}}
+		{{#link-to 'login'}}Login{{/link-to}}
+	{{/if}}
   {{#each}}
     <div {{bind-attr class=":player selected"}} {{action 'selectPlayer' this}}>
       <span class="name">{{name}}</span>

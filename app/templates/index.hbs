@@ -1,6 +1,7 @@
 <div class="leaderboard">
-	{{#if authorized}}
-		<button {{action 'logout'}}>Logout</button>
+	{{#if session.isAuthenticated}}
+		<button {{action 'invalidateSession'}}>Logout</button>
+		<span><b>User:</b> {{session.currentUser.name}}</span>
 	{{else}}
 		{{#link-to 'login'}}Login{{/link-to}}
 	{{/if}}

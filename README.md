@@ -4,6 +4,12 @@ This README outlines the details of collaborating on this Ember application.
 
 A simple application, that demonstrates using emberfire, as a ember-cli addon.
 
+## Notes
+
+Not sure how to implement findy by value with emberfire... Firebase generates ids that are not the same as the email/password ids, which are not the same as the EmberData ids...
+
+Oh, EmberData uses the Firebase ids. What we need then is to be able to take the email/password id and get the Firebase id. May need an intermediary object Auth with fields Auth.auth_id and Auth.user_id
+
 ## Prerequisites
 
 You will need the following things properly installed on your computer.

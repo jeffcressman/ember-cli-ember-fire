@@ -12,5 +12,6 @@ export default DS.Model.extend({
   name: DS.attr('string'),
   email: DS.attr('string'),
   password: DS.attr('string'),
-  score: DS.attr('number')
+  score: DS.attr('number'),
+  login: DS.belongsTo('login', {async: true})
 });

@@ -1,10 +1,11 @@
 import Ember from 'ember';
 import ENV from 'ember-cli-ember-fire/config/environment';
+import LoginControllerMixin from 'simple-auth/mixins/login-controller-mixin';
 
 var sum = Ember.computed.sum;
 var mapBy = Ember.computed.mapBy;
 
-export default Ember.ArrayController.extend({
+export default Ember.ArrayController.extend(LoginControllerMixin, {
 	authorized: false,
   itemController: 'player',
   scores: mapBy('@this', 'score'),
@@ -26,6 +27,7 @@ export default Ember.ArrayController.extend({
       model.save();
     },
     destroyUser: function(model) {
+    	// TODO: Should be able to get these from the Session now
     	var user_email = model.get('email');
     	var user_pass = model.get('password');
 
@@ -43,12 +45,9 @@ export default Ember.ArrayController.extend({
 			    console.log("Error removing user:", error);
 			  }
 			});
-    },
-    logout: function() {
-    	var ref = new window.Firebase(ENV.firebase);
-    	ref.unauth();
-    	console.log("User logged out");
-    	this.set('authorized', false);
+
+      // TODO:
+			// and delete the login model
     }
   }
 });
